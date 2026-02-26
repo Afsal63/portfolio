@@ -38,7 +38,7 @@ const dynamicApps = [
     desc: "Data-driven reporting system for enterprises.",
     image: "/projects/b.png",
     live: "https://granny-frontend.vercel.app/dashboard",
-    github: "",
+    github: "https://github.com/Afsal63",
     tech: ["Next.js", "MongoDB", "Recharts"],
   },
 ];
@@ -50,7 +50,7 @@ const businessProjects = [
     desc: "Corporate website for construction business.",
     image: "/projects/haris.png",
     live: "https://haris-co-git-remaining-pages-jumairajs-projects.vercel.app",
-    github: "https://github.com/yourname/harisnco",
+    github: "https://github.com/Afsal63",
     tech: ["Next.js", "Tailwind CSS"],
   },
   {
@@ -59,7 +59,7 @@ const businessProjects = [
     desc: "Restaurant landing page with ordering integration.",
     image: "/projects/momo.png",
     live: "https://momo-buggy.vercel.app/",
-    github: "https://github.com/yourname/momobuggy",
+    github: "https://github.com/Afsal63/momo-buggy",
     tech: ["React", "Firebase"],
   },
   {
@@ -68,7 +68,7 @@ const businessProjects = [
    desc: "High converting landing pages for product launches.",
     image: "/projects/sugaroo.png",
     live: "https://landing-demo.com",
-    github: "https://github.com/yourname/landing-pages",
+    github: "https://github.com/Afsal63/",
     tech: ["Next.js", "Framer Motion"],
   },
 ];
