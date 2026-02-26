@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(circle at 20% 20%, #111827 0%, #000000 40%),
+              radial-gradient(circle at 80% 80%, rgba(59,130,246,0.15), transparent 40%);
+  background-color: #000;
+}
