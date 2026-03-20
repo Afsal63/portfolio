@@ -2,9 +2,22 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
+import ProjectCard from "./ProjectCard";
 
-const dynamicApps = [
+// ✅ 1. Define type
+export type Project = {
+  title: string;
+  slug: string;
+  desc: string;
+  image: string;
+  tech: string[];
+  live?: string;
+  github?: string;
+  accent: string; // required (used in ProjectCard)
+};
+
+// ✅ 2. Typed data
+const dynamicApps: Project[] = [
   {
     title: "ERP System",
     slug: "erp-system",
@@ -13,15 +26,15 @@ const dynamicApps = [
     live: "https://erp-next.vercel.app/dashboard",
     github: "https://github.com/Afsal63/erp-next",
     tech: ["Next.js", "Node.js", "MongoDB", "TypeScript"],
+    accent: "#3b82f6",
   },
   {
     title: "Docurator",
     slug: "docurator",
     desc: "Document automation and management SaaS platform.",
     image: "/projects/docurator.png",
-    live: "",
-    github: "",
     tech: ["Next.js", "Express", "PostgreSQL"],
+    accent: "#8b5cf6",
   },
   {
     title: "Trade Analyzer",
@@ -31,6 +44,7 @@ const dynamicApps = [
     live: "https://trading-journal-red-chi.vercel.app/backtested",
     github: "https://github.com/Afsal63/Trading-Journal",
     tech: ["React", "Node.js", "WebSocket", "Chart.js"],
+    accent: "#f59e0b",
   },
   {
     title: "Granny Wonders",
@@ -40,10 +54,11 @@ const dynamicApps = [
     live: "https://granny-frontend.vercel.app/dashboard",
     github: "https://github.com/Afsal63",
     tech: ["Next.js", "MongoDB", "Recharts"],
+    accent: "#22c55e",
   },
 ];
 
-const businessProjects = [
+const businessProjects: Project[] = [
   {
     title: "Haris & Co",
     slug: "haris-and-co",
@@ -52,24 +67,27 @@ const businessProjects = [
     live: "https://haris-co-git-remaining-pages-jumairajs-projects.vercel.app",
     github: "https://github.com/Afsal63",
     tech: ["Next.js", "Tailwind CSS"],
+    accent: "#22c55e",
   },
   {
     title: "Momo Buggy",
     slug: "momo-buggy",
     desc: "Restaurant landing page with ordering integration.",
     image: "/projects/momo.png",
-    live: "https://momo-buggy.vercel.app/",
+    live: "https://www.momobuggy.com/",
     github: "https://github.com/Afsal63/momo-buggy",
     tech: ["React", "Firebase"],
+    accent: "#ef4444",
   },
   {
     title: "Sugaroo",
-    slug: "Qr code scaning order page",
-   desc: "High converting landing pages for product launches.",
+    slug: "qr-code-order",
+    desc: "High converting landing pages for product launches.",
     image: "/projects/sugaroo.png",
     live: "https://landing-demo.com",
     github: "https://github.com/Afsal63/",
     tech: ["Next.js", "Framer Motion"],
+    accent: "#eab308",
   },
 ];
 
@@ -77,172 +95,82 @@ export default function Projects() {
   const [showAllDynamic, setShowAllDynamic] = useState(false);
   const [showAllBusiness, setShowAllBusiness] = useState(false);
 
-  const visibleDynamic = showAllDynamic
-    ? dynamicApps
-    : dynamicApps.slice(0, 3);
-
-  const visibleBusiness = showAllBusiness
-    ? businessProjects
-    : businessProjects.slice(0, 3);
-
   return (
-    <section id="projects" className="py-24 px-6 max-w-7xl mx-auto">
-      <h2 className="text-4xl md:text-5xl font-bold text-center mb-20">
-        Projects
-      </h2>
+    <section id="projects" className="py-24 px-6">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-20"
+        >
+          <p className="text-xs tracking-widest uppercase text-blue-400 mb-4">
+            Work
+          </p>
+          <h2 className="text-4xl md:text-5xl font-black font-display">
+            Selected Projects
+          </h2>
+        </motion.div>
 
-      {/* ================= DYNAMIC APPS ================= */}
-      <div className="mb-24">
-        <h3 className="text-2xl font-semibold mb-10 text-blue-500">
-          Dynamic Applications
-        </h3>
+        {/* Dynamic Apps */}
+        <div className="mb-20">
+          <div className="flex items-center gap-3 mb-10">
+            <span className="w-2 h-2 rounded-full bg-blue-400" />
+            <h3 className="text-sm font-semibold tracking-widest uppercase text-blue-400">
+              Dynamic Applications
+            </h3>
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {visibleDynamic.map((project, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -8 }}
-              className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-md transition hover:border-blue-500"
-            >
-              <div className="relative h-52 w-full overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition duration-500"
-                />
-              </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {(showAllDynamic
+              ? dynamicApps
+              : dynamicApps.slice(0, 3)
+            ).map((p, i) => (
+              <ProjectCard key={p.slug} project={p} index={i} />
+            ))}
+          </div>
 
-              <div className="p-6">
-                <h4 className="text-xl font-semibold">{project.title}</h4>
-
-                <p className="text-gray-400 mt-3 text-sm">
-                  {project.desc}
-                </p>
-
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="text-xs px-3 py-1 bg-white/10 rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                {/* Buttons */}
-                <div className="flex gap-4 mt-6">
-                  <a
-                    href={project?.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
-                  >
-                    Live Demo
-                  </a>
-
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm px-4 py-2 border border-white/20 rounded-lg hover:border-blue-500 transition"
-                  >
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          {!showAllDynamic && dynamicApps.length > 3 && (
+            <div className="text-center mt-10">
+              <button
+                onClick={() => setShowAllDynamic(true)}
+                className="px-6 py-3 text-sm border border-white/10 rounded-xl hover:border-blue-400 hover:text-blue-400 transition-all duration-200"
+              >
+                Show {dynamicApps.length - 3} more
+              </button>
+            </div>
+          )}
         </div>
 
-        {!showAllDynamic && (
-          <div className="text-center mt-10">
-            <button
-              onClick={() => setShowAllDynamic(true)}
-              className="px-6 py-3 border border-white/20 rounded-xl hover:border-blue-500 transition"
-            >
-              See More
-            </button>
+        {/* Business Projects */}
+        <div>
+          <div className="flex items-center gap-3 mb-10">
+            <span className="w-2 h-2 rounded-full bg-green-400" />
+            <h3 className="text-sm font-semibold tracking-widest uppercase text-green-400">
+              Business & Landing
+            </h3>
           </div>
-        )}
-      </div>
 
-      {/* ================= BUSINESS PROJECTS ================= */}
-      <div>
-        <h3 className="text-2xl font-semibold mb-10 text-blue-500">
-          Business & Landing Projects
-        </h3>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {(showAllBusiness
+              ? businessProjects
+              : businessProjects.slice(0, 3)
+            ).map((p, i) => (
+              <ProjectCard key={p.slug} project={p} index={i} />
+            ))}
+          </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {visibleBusiness.map((project, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ y: -8 }}
-              className="group bg-white/5 border border-white/10 rounded-2xl overflow-hidden backdrop-blur-md transition hover:border-blue-500"
-            >
-              <div className="relative h-52 w-full overflow-hidden">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition duration-500"
-                />
-              </div>
-
-              <div className="p-6">
-                <h4 className="text-xl font-semibold">{project.title}</h4>
-
-                <p className="text-gray-400 mt-3 text-sm">
-                  {project.desc}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mt-4">
-                  {project.tech.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="text-xs px-3 py-1 bg-white/10 rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-4 mt-6">
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm px-4 py-2 bg-blue-600 rounded-lg hover:bg-blue-700 transition"
-                  >
-                    Live Demo
-                  </a>
-
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm px-4 py-2 border border-white/20 rounded-lg hover:border-blue-500 transition"
-                  >
-                    GitHub
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          {!showAllBusiness && businessProjects.length > 3 && (
+            <div className="text-center mt-10">
+              <button
+                onClick={() => setShowAllBusiness(true)}
+                className="px-6 py-3 text-sm border border-white/10 rounded-xl hover:border-green-400 hover:text-green-400 transition-all duration-200"
+              >
+                Show more
+              </button>
+            </div>
+          )}
         </div>
-
-        {!showAllBusiness && (
-          <div className="text-center mt-10">
-            <button
-              onClick={() => setShowAllBusiness(true)}
-              className="px-6 py-3 border border-white/20 rounded-xl hover:border-blue-500 transition"
-            >
-              See More
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );
