@@ -128,7 +128,7 @@ function Hero() {
             View Work
           </a>
           <a
-            href="mailto:afsalafzz64@gmail.com"
+            href="mailto:afsalafzz63@gmail.com"
             className="px-8 py-4 border border-white/20 rounded-xl hover:border-blue-400 hover:text-blue-400 transition-all duration-200"
           >
             Get in Touch

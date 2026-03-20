@@ -38,7 +38,7 @@ function Navbar() {
             </a>
           ))}
           <a
-            href="mailto:afsalafzz64@gmail.com"
+            href="mailto:afsalafzz63@gmail.com"
             className="text-sm px-4 py-2 border border-white/20 rounded-lg hover:border-blue-400 hover:text-blue-400 transition-all duration-200"
           >
             Hire Me
