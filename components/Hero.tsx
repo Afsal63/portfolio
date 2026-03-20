@@ -1,23 +1,46 @@
-"use client"
+"use client";
 import { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
+import Image from "next/image";
 
 function Hero() {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
   const y = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
- 
+
   const words = ["Full Stack", "MERN", "SaaS", "Systems"];
   const [wordIdx, setWordIdx] = useState(0);
- 
+
   useEffect(() => {
-    const t = setInterval(() => setWordIdx((i) => (i + 1) % words.length), 2200);
+    const t = setInterval(
+      () => setWordIdx((i) => (i + 1) % words.length),
+      2200,
+    );
     return () => clearInterval(t);
   }, []);
- 
+
   return (
-    <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section
+      ref={ref}
+      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+        className="flex justify-center md:justify-end"
+      >
+        {/* Glow effect */}
+      </motion.div>
       {/* Grid BG */}
       <div
         className="absolute inset-0 opacity-[0.04]"
@@ -26,12 +49,15 @@ function Hero() {
           backgroundSize: "60px 60px",
         }}
       />
- 
+
       {/* Glow blobs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] opacity-10 bg-blue-500 pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[100px] opacity-8 bg-violet-500 pointer-events-none" />
- 
-      <motion.div style={{ y, opacity }} className="relative z-10 max-w-5xl mx-auto px-6 text-center">
+
+      <motion.div
+        style={{ y, opacity }}
+        className="relative z-10 max-w-5xl mx-auto px-6 text-center"
+      >
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -41,7 +67,10 @@ function Hero() {
           <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
           Available for new projects
         </motion.div>
+
+      
  
+
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -50,11 +79,12 @@ function Hero() {
         >
           Afsal
           <br />
+          
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-violet-400 to-blue-400">
             Developer
           </span>
         </motion.h1>
- 
+
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -74,16 +104,17 @@ function Hero() {
             </motion.span>
           </AnimatePresence>
         </motion.div>
- 
+
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.65 }}
           className="text-gray-500 max-w-xl mx-auto text-base mb-12"
         >
-          4+ years crafting scalable web systems, SaaS platforms & real-time applications.
+          4+ years crafting scalable web systems, SaaS platforms & real-time
+          applications.
         </motion.p>
- 
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -103,7 +134,7 @@ function Hero() {
             Get in Touch
           </a>
         </motion.div>
- 
+
         {/* Stats */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -111,15 +142,21 @@ function Hero() {
           transition={{ delay: 0.9 }}
           className="flex justify-center gap-12 mt-20 pt-8 border-t border-white/5"
         >
-          {[["3+", "Years Exp."], ["12+", "Projects"], ["6+", "Clients"]].map(([n, l]) => (
+          {[
+            ["3+", "Years Exp."],
+            ["12+", "Projects"],
+            ["6+", "Clients"],
+          ].map(([n, l]) => (
             <div key={l} className="text-center">
               <div className="text-3xl font-black text-white">{n}</div>
-              <div className="text-xs text-gray-500 mt-1 tracking-wide">{l}</div>
+              <div className="text-xs text-gray-500 mt-1 tracking-wide">
+                {l}
+              </div>
             </div>
           ))}
         </motion.div>
       </motion.div>
- 
+
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -127,7 +164,9 @@ function Hero() {
         transition={{ delay: 1.2 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
-        <span className="text-xs text-gray-600 tracking-widest uppercase">Scroll</span>
+        <span className="text-xs text-gray-600 tracking-widest uppercase">
+          Scroll
+        </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 1.4 }}
@@ -138,4 +177,4 @@ function Hero() {
   );
 }
 
-export default Hero
+export default Hero;

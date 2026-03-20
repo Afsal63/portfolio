@@ -40,7 +40,14 @@ function ProjectCard({ project, index }: ProjectCardProps) {
         />
         <div className="absolute inset-0 flex items-center justify-center">
 
-          <Image alt={project.accent} width={400} height={400} src={project.image}  />
+        <div className="relative w-full h-45">
+  <Image
+    src={project.image}
+    alt={project.title}
+    fill
+    className="object-cover rounded-xl"
+  />
+</div>
           <span className="text-5xl opacity-20 font-black font-display">
             {/* {project.title[0]} */}
           </span>
