@@ -24,7 +24,7 @@ const dynamicApps: Project[] = [
     desc: "Complete enterprise management system with inventory, HR & billing.",
     image: "/projects/Erp.png",
     live: "https://erp-next.vercel.app/dashboard",
-    github: "https://github.com/Afsal63/erp-next",
+    // github: "https://github.com/Afsal63/erp-next",
     tech: ["Next.js", "Node.js", "MongoDB", "TypeScript"],
     accent: "#3b82f6",
   },
@@ -42,7 +42,7 @@ const dynamicApps: Project[] = [
     desc: "Advanced trading analytics dashboard with real-time insights.",
     image: "/projects/trade.png",
     live: "https://trading-journal-red-chi.vercel.app/backtested",
-    github: "https://github.com/Afsal63/Trading-Journal",
+    // github: "https://github.com/Afsal63/Trading-Journal",
     tech: ["React", "Node.js", "WebSocket", "Chart.js"],
     accent: "#f59e0b",
   },
@@ -52,7 +52,7 @@ const dynamicApps: Project[] = [
     desc: "Data-driven reporting system for enterprises.",
     image: "/projects/b.png",
     live: "https://granny-frontend.vercel.app/dashboard",
-    github: "https://github.com/Afsal63",
+    // github: "https://github.com/Afsal63",
     tech: ["Next.js", "MongoDB", "Recharts"],
     accent: "#22c55e",
   },
@@ -75,7 +75,7 @@ const businessProjects: Project[] = [
     desc: "Restaurant landing page with ordering integration.",
     image: "/projects/momo.png",
     live: "https://www.momobuggy.com/",
-    github: "https://github.com/Afsal63/momo-buggy",
+    // github: "https://github.com/Afsal63/momo-buggy",
     tech: ["React", "Firebase"],
     accent: "#ef4444",
   },
@@ -84,8 +84,8 @@ const businessProjects: Project[] = [
     slug: "qr-code-order",
     desc: "High converting landing pages for product launches.",
     image: "/projects/sugaroo.png",
-    live: "https://landing-demo.com",
-    github: "https://github.com/Afsal63/",
+    live: "https://sugaroo-m.vercel.app",
+    // github: "https://github.com/Afsal63/",
     tech: ["Next.js", "Framer Motion"],
     accent: "#eab308",
   },
@@ -122,12 +122,11 @@ export default function Projects() {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(showAllDynamic
-              ? dynamicApps
-              : dynamicApps.slice(0, 3)
-            ).map((p, i) => (
-              <ProjectCard key={p.slug} project={p} index={i} />
-            ))}
+            {(showAllDynamic ? dynamicApps : dynamicApps.slice(0, 3)).map(
+              (p, i) => (
+                <ProjectCard key={p.slug} project={p} index={i} />
+              ),
+            )}
           </div>
 
           {!showAllDynamic && dynamicApps.length > 3 && (
