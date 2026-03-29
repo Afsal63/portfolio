@@ -10,7 +10,7 @@ export default function Footer() {
         </p>
         <div className="flex gap-6 text-sm text-gray-500">
           <a href="https://github.com/Afsal63" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a>
-          <a href="#" className="hover:text-white transition-colors">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/afsal-k-a-a39b561b0/" target="_blank" className="hover:text-white transition-colors">LinkedIn</a>
           <a href="mailto:afsalafzz63@gmail.com" className="hover:text-white transition-colors">Email</a>
         </div>
       </div>
