@@ -1,19 +1,21 @@
-"use client"
-import { useState, useEffect, } from "react";
-import { motion,  AnimatePresence } from "framer-motion";
+"use client";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
- 
+
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
   }, []);
- 
+
   const links = ["About", "Projects", "Skills", "Contact"];
- 
+
+  // remove special chars
+
   return (
     <motion.nav
       initial={{ y: -60, opacity: 0 }}
@@ -25,15 +27,15 @@ function Navbar() {
         <a href="#" className="text-xl font-black tracking-tight font-display">
           Afsal<span className="text-blue-400">.</span>
         </a>
- 
+
         <div className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <a
               key={l}
-              href={`#${l.toLowerCase()}`}
+           href={`#${l.toLowerCase()}`}
               className="text-sm text-gray-400 hover:text-white transition-colors duration-200 relative group"
             >
-              {l}
+             {l}
               <span className="absolute -bottom-0.5 left-0 w-0 h-px bg-blue-400 transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
@@ -44,14 +46,17 @@ function Navbar() {
             Hire Me
           </a>
         </div>
- 
-        <button className="md:hidden text-white" onClick={() => setMenuOpen(!menuOpen)}>
+
+        <button
+          className="md:hidden text-white"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
           <span className="block w-5 h-px bg-white mb-1" />
           <span className="block w-3 h-px bg-white mb-1 ml-auto" />
           <span className="block w-5 h-px bg-white" />
         </button>
       </div>
- 
+
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -63,11 +68,11 @@ function Navbar() {
             {links.map((l) => (
               <a
                 key={l}
-                href={`#${l.toLowerCase()}`}
+             href={`#${l.toLowerCase()}`}
                 onClick={() => setMenuOpen(false)}
                 className="block py-3 text-gray-400 hover:text-white transition-colors border-b border-white/5"
               >
-                {l}
+             {l}
               </a>
             ))}
           </motion.div>
@@ -77,4 +82,4 @@ function Navbar() {
   );
 }
 
-export default Navbar
+export default Navbar;

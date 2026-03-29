@@ -11,7 +11,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           className="text-5xl font-bold mb-6"
         >
-          Building Scalable Products 🚀
+          Building Scalable Products 
         </motion.h2>
 
         <motion.p

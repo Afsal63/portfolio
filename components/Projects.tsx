@@ -19,6 +19,25 @@ export type Project = {
 // ✅ 2. Typed data
 const dynamicApps: Project[] = [
   {
+    title: "AI Resume Builder & Analyzer",
+    slug: "ai-resume-builder",
+    desc: "Full-stack AI resume platform built with Next.js that analyzes resumes against job descriptions, detects ATS gaps, and generates optimized, job-specific resumes using LLM-powered pipelines.",
+    image: "/projects/resume.png",
+    live: "https://ai-resume-analyzer-builder.vercel.app/",
+    // github: "https://github.com/Afsal63/ai-resume-builder",
+    tech: [
+      "Next.js",
+      "JavaScript",
+      "Node.js",
+      "MongoDB",
+      "CSS Modules",
+      "Google Gemini API ",
+      "Jest",
+      "React Testing Library",
+    ],
+    accent: "#10b981",
+  },
+  {
     title: "ERP System",
     slug: "erp-system",
     desc: "Complete enterprise management system with inventory, HR & billing.",
